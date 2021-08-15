@@ -1,0 +1,102 @@
+.container {
+  display: flex;
+  justify-content: center;
+
+  margin: 2px auto;
+  &-card {
+    background-color: $cardColor;
+    width: 400px;
+    height: 400px;
+  }
+  &-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input {
+      margin-left: 20px;
+      margin-right: 10px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+      width: 370px;
+      height: 30px;
+      border: 1px solid #edf2f4;
+      border-radius: 5px;
+    }
+    button {
+      color: $cardColor;
+      width: 30px;
+      height: 30px;
+
+      border-radius: 5px;
+
+      margin-right: 20px;
+      border: 1px solid $completeBtn;
+      background-color: $completeBtn;
+      &:hover {
+        border: 1px solid $comleteBtnHover;
+        background-color: $comleteBtnHover;
+      }
+    }
+  }
+
+  &-checkBox {
+    height: 65%;
+    .todo-list {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      padding: 0;
+
+      li {
+        list-style: none;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        padding: 5px 5px;
+        margin: 1px 20px;
+
+        &:hover {
+          background-color: $backgroundColor;
+        }
+        p {
+          color: black;
+          margin-bottom: auto;
+        }
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50px;
+          height: 20px;
+          width: 20px;
+          color: #ffff;
+          margin-left: auto;
+          border: 2px solid $completeBtn;
+          background-color: $cardColor;
+
+          &:hover {
+            border: 1px solid $comleteBtnHover;
+            background-color: $comleteBtnHover;
+          }
+        }
+      }
+    }
+  }
+  &-footer {
+    button {
+      font-size: 14px;
+      border: 1px solid $deleteBtn;
+      border-radius: 5px;
+      background-color: $deleteBtn;
+      color: $cardColor;
+      padding: 4px 4px;
+      margin-left: 20px;
+      margin-top: 20px;
+      &:hover {
+        border: 1px solid $deleteBtnHover;
+        background-color: $deleteBtnHover;
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+  
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+    <div class="title"> <p>Ruba's To-do list</p></div>
+    <div class="container">
+     
+        <div class="container-card shadow-sm bg-white rounded" >
+            <div class="container-input">
+                <input id="input-field" type="text" placeholder="what to do?" >
+                <button id="input-btn">+
+                   
+                </button>
+            </div>
+            <div class="container-checkBox">
+                <ul class="todo-list" id="todo-list">
+                    <!-- <li  class="todo-item"   >
+                        <button type="button" ></button>
+                        	<p class="todo-text" >todo </p>
+                            
+                    	</li> -->
+                </ul>
+            </div>
+            <div class="container-footer">
+                <button id="delete-btn">Delete All</button>
+            </div>
+           
+        </div>
+    </div>
+    <script>
+let inputBox=document.getElementById("input-field");//input field
+let todoList=document.getElementById("todo-list");//list
+let addbtn=document.getElementById("input-btn");//adding button
+let deleteAllbtn=document.getElementById("delete-btn");
+
+
+showlist();
+
+addbtn.onclick=()=>{
+    let enteredValue=inputBox.value;
+    let getLocalStorage=localStorage.getItem("New Todo");
+    if(getLocalStorage==null){
+        arraylist=[];
+    }else{
+        arraylist=JSON.parse(getLocalStorage);
+    }
+    arraylist.push(enteredValue);
+    localStorage.setItem("New Todo",JSON.stringify(arraylist));
+    showlist();
+   
+}
+
+function showlist(){
+    let getLocalStorage=localStorage.getItem("New Todo");
+    if(getLocalStorage==null){
+        arraylist=[];
+    }else{
+        arraylist=JSON.parse(getLocalStorage);
+    }
+    
+    let newItem="";
+    arraylist.forEach((element, index) => {
+        newItem +=   `<li  class="todo-item"   >
+                      
+                        	<p class="todo-text" >${element}</p>
+                            <button type="button" onclick="deleteItem(${index})" >
+</button>
+                    	</li>`;
+
+      
+  });
+  todoList.innerHTML = newItem; 
+  inputBox.value = ""; 
+
+
+}
+
+function deleteItem(index){
+  
+  
+    let getLocalStorage = localStorage.getItem("New Todo");
+    arraylist = JSON.parse(getLocalStorage);
+    arraylist.splice(index, 1); 
+  localStorage.setItem("New Todo", JSON.stringify(arraylist));
+  showlist(); 
+}
+
+deleteAllbtn.onclick = ()=>{
+    arraylist = []; 
+  localStorage.setItem("New Todo", JSON.stringify(arraylist)); 
+  showlist(); 
+}
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+</body>
+</html>
